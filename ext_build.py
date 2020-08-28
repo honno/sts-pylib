@@ -5,9 +5,9 @@ ffi = FFI()
 ffi.cdef("double Frequency(unsigned char epsilon[], int n);")
 
 ffi.set_source(
-    "_sts",  # name of the output C extension
+    "_sts",
     """
-    #include "include/stat_fncs.h"
+    #include "../include/stat_fncs.h"
     """,
     sources=["src/frequency.c"],
     include_dirs=["include/"],
