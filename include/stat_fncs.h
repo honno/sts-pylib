@@ -3,7 +3,7 @@
      S T A T I S T I C A L  T E S T  F U N C T I O N  P R O T O T Y P E S 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-void	Frequency(int n);
+double Frequency(unsigned char epsilon[], int n);
 void	BlockFrequency(int M, int n);
 void	CumulativeSums(int n);
 void	Runs(int n);
