@@ -1,1 +1,1 @@
-from _sts.lib import Frequency
+from _sts.lib import *
