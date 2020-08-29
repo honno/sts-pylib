@@ -4,7 +4,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 double Frequency(unsigned char epsilon[], int n);
-void	BlockFrequency(int M, int n);
+double BlockFrequency(unsigned char epsilon[], int M, int n);
 void	CumulativeSums(int n);
 void	Runs(int n);
 void	LongestRunOfOnes(int n);

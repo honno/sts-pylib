@@ -3,13 +3,16 @@ from cffi import FFI
 ffi = FFI()
 
 ffi.cdef("double Frequency(unsigned char epsilon[], int n);")
+ffi.cdef("double BlockFrequency(unsigned char epsilon[], int M, int n);")
 
 ffi.set_source(
     "_sts",
     """
     #include "../include/stat_fncs.h"
     """,
-    sources=["src/frequency.c"],
+    sources=["src/frequency.c",
+             "src/cephes.c",
+             "src/blockFrequency.c"],
     include_dirs=["include/"],
 )
 
