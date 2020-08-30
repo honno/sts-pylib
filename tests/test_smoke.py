@@ -32,4 +32,8 @@ def test_spectral():
 def test_non_overlapping_template_matching():
     assert isinstance(NonOverlappingTemplateMatchings(bitseq(20), 2, 20), float)
 
+def test_overlapping_template_matching():
+    assert isinstance(OverlappingTemplateMatchings(bitseq(1032), 8, 1032), float)
+
+
 

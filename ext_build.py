@@ -11,23 +11,27 @@ ffi.cdef("double LongestRunOfOnes(unsigned char epsilon[], int n);")
 ffi.cdef("double Rank(unsigned char epsilon[], int n);")
 ffi.cdef("double DiscreteFourierTransform(unsigned char epsilon[], int n);")
 ffi.cdef("double NonOverlappingTemplateMatchings(unsigned char epsilon[], int m, int n);")
+ffi.cdef("double OverlappingTemplateMatchings(unsigned char epsilon[], int m, int n);")
 
 ffi.set_source(
     "_sts",
     """
     #include "../include/stat_fncs.h"
     """,
-    sources=["src/frequency.c",
-             "src/cephes.c",
-             "src/blockFrequency.c",
-             "src/cusum.c",
-             "src/runs.c",
-             "src/longestRunOfOnes.c",
-             "src/matrix.c",
-             "src/rank.c",
-             "src/dfft.c",
-             "src/discreteFourierTransform.c",
-             "src/nonOverlappingTemplateMatchings.c"],
+    sources=[
+        "src/frequency.c",
+        "src/cephes.c",
+        "src/blockFrequency.c",
+        "src/cusum.c",
+        "src/runs.c",
+        "src/longestRunOfOnes.c",
+        "src/matrix.c",
+        "src/rank.c",
+        "src/dfft.c",
+        "src/discreteFourierTransform.c",
+        "src/nonOverlappingTemplateMatchings.c",
+        "src/overlappingTemplateMatchings.c"
+    ],
     include_dirs=["include/"],
 )
 
