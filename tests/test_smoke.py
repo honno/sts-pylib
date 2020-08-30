@@ -19,3 +19,7 @@ def test_cusum_backward():
 
 def test_runs():
     assert Runs(bitseq(10), 10)
+
+def test_longest_runs():
+    assert LongestRunOfOnes(bitseq(160), 160)
+
