@@ -11,6 +11,8 @@ def test_monobit():
 def test_frequency_within_block():
     assert BlockFrequency(bitseq(100), 10, 100)
 
+def test_cusum_forward():
+    assert CumulativeSumsForward(bitseq(10), 10)
 
-
-
+def test_cusum_backward():
+    assert CumulativeSumsBackward(bitseq(10), 10)

@@ -9,8 +9,7 @@
 		    C U M U L A T I V E  S U M S  T E S T
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-void
-CumulativeSums(int n)
+double CumulativeSumsForward(unsigned char epsilon[], int n)
 {
 	int		S, sup, inf, z, zrev, k;
 	double	sum1, sum2, p_value;
@@ -42,19 +41,37 @@ CumulativeSums(int n)
 
 	p_value = 1.0 - sum1 + sum2;
 	
-	fprintf(stats[TEST_CUSUM], "\t\t      CUMULATIVE SUMS (FORWARD) TEST\n");
-	fprintf(stats[TEST_CUSUM], "\t\t-------------------------------------------\n");
-	fprintf(stats[TEST_CUSUM], "\t\tCOMPUTATIONAL INFORMATION:\n");
-	fprintf(stats[TEST_CUSUM], "\t\t-------------------------------------------\n");
-	fprintf(stats[TEST_CUSUM], "\t\t(a) The maximum partial sum = %d\n", z);
-	fprintf(stats[TEST_CUSUM], "\t\t-------------------------------------------\n");
-
+	printf("      CUMULATIVE SUMS (FORWARD) TEST\n");
+	printf("-------------------------------------------\n");
+	printf("COMPUTATIONAL INFORMATION:\n");
+	printf("-------------------------------------------\n");
+	printf("(a) The maximum partial sum = %d\n", z);
+	printf("-------------------------------------------\n");
 	if ( isNegative(p_value) || isGreaterThanOne(p_value) )
-		fprintf(stats[TEST_CUSUM], "\t\tWARNING:  P_VALUE IS OUT OF RANGE\n");
+		printf("WARNING:  P_VALUE IS OUT OF RANGE\n");
+	printf("p_value = %f\n", p_value);
 
-	fprintf(stats[TEST_CUSUM], "%s\t\tp_value = %f\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value);
-	fprintf(results[TEST_CUSUM], "%f\n", p_value);
-		
+  return p_value;
+}
+
+double CumulativeSumsBackward(unsigned char epsilon[], int n)
+{
+  int		S, sup, inf, z, zrev, k;
+  double	sum1, sum2, p_value;
+
+  S = 0;
+  sup = 0;
+  inf = 0;
+  for ( k=0; k<n; k++ ) {
+    epsilon[k] ? S++ : S--;
+    if ( S > sup )
+      sup++;
+    if ( S < inf )
+      inf--;
+    z = (sup > -inf) ? sup : -inf;
+    zrev = (sup-S > S-inf) ? sup-S : S-inf;
+  }
+
 	// backwards
 	sum1 = 0.0;
 	for ( k=(-n/zrev+1)/4; k<=(n/zrev-1)/4; k++ ) {
@@ -68,16 +85,15 @@ CumulativeSums(int n)
 	}
 	p_value = 1.0 - sum1 + sum2;
 
-	fprintf(stats[TEST_CUSUM], "\t\t      CUMULATIVE SUMS (REVERSE) TEST\n");
-	fprintf(stats[TEST_CUSUM], "\t\t-------------------------------------------\n");
-	fprintf(stats[TEST_CUSUM], "\t\tCOMPUTATIONAL INFORMATION:\n");
-	fprintf(stats[TEST_CUSUM], "\t\t-------------------------------------------\n");
-	fprintf(stats[TEST_CUSUM], "\t\t(a) The maximum partial sum = %d\n", zrev);
-	fprintf(stats[TEST_CUSUM], "\t\t-------------------------------------------\n");
-
+	printf("      CUMULATIVE SUMS (REVERSE) TEST\n");
+	printf("-------------------------------------------\n");
+	printf("COMPUTATIONAL INFORMATION:\n");
+	printf("-------------------------------------------\n");
+	printf("(a) The maximum partial sum = %d\n", zrev);
+	printf("-------------------------------------------\n");
 	if ( isNegative(p_value) || isGreaterThanOne(p_value) )
-		fprintf(stats[TEST_CUSUM], "\t\tWARNING:  P_VALUE IS OUT OF RANGE\n");
+		printf("WARNING:  P_VALUE IS OUT OF RANGE\n");
+	printf("p_value = %f\n", p_value);
 
-	fprintf(stats[TEST_CUSUM], "%s\t\tp_value = %f\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value); fflush(stats[TEST_CUSUM]);
-	fprintf(results[TEST_CUSUM], "%f\n", p_value); fflush(results[TEST_CUSUM]);
+	return p_value;
 }
