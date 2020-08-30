@@ -8,6 +8,7 @@ ffi.cdef("double CumulativeSumsForward(unsigned char epsilon[], int n);")
 ffi.cdef("double CumulativeSumsBackward(unsigned char epsilon[], int n);")
 ffi.cdef("double Runs(unsigned char epsilon[], int n);")
 ffi.cdef("double LongestRunOfOnes(unsigned char epsilon[], int n);")
+ffi.cdef("double Rank(unsigned char epsilon[], int n);")
 
 ffi.set_source(
     "_sts",
@@ -19,7 +20,9 @@ ffi.set_source(
              "src/blockFrequency.c",
              "src/cusum.c",
              "src/runs.c",
-             "src/longestRunOfOnes.c"],
+             "src/longestRunOfOnes.c",
+             "src/matrix.c",
+             "src/rank.c"],
     include_dirs=["include/"],
 )
 

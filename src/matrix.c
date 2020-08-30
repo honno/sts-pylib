@@ -143,14 +143,15 @@ create_matrix(int M, int Q)
 	}
 }
 
-void
-def_matrix(int M, int Q, BitSequence **m,int k)
+BitSequence** def_matrix(unsigned char epsilon[], int M, int Q, BitSequence **m,int k)
 {
 	int		i,j;
 	
 	for ( i=0; i<M; i++ ) 
 		for ( j=0; j<Q; j++ )
 			m[i][j] = epsilon[k*(M*Q)+j+i*M];
+
+  return m;
 }
 
 void
