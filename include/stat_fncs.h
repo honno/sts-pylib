@@ -10,7 +10,7 @@ double CumulativeSumsBackward(unsigned char epsilon[], int n);
 double Runs(unsigned char epsilon[], int n);
 double LongestRunOfOnes(unsigned char epsilon[], int n);
 double Rank(unsigned char epsilon[], int n);
-void	DiscreteFourierTransform(int n);
+double DiscreteFourierTransform(unsigned char epsilon[], int n);
 void	NonOverlappingTemplateMatchings(int m, int n);
 void	OverlappingTemplateMatchings(int m, int n);
 void	Universal(int n);

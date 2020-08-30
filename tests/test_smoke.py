@@ -26,4 +26,7 @@ def test_longest_runs():
 def test_binary_matrix_rank():
     assert isinstance(Rank(bitseq(1024), 1024), float)
 
+def test_spectral():
+    assert isinstance(DiscreteFourierTransform(bitseq(10), 10), float)
+
 
