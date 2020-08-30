@@ -10,6 +10,7 @@ ffi.cdef("double Runs(unsigned char epsilon[], int n);")
 ffi.cdef("double LongestRunOfOnes(unsigned char epsilon[], int n);")
 ffi.cdef("double Rank(unsigned char epsilon[], int n);")
 ffi.cdef("double DiscreteFourierTransform(unsigned char epsilon[], int n);")
+ffi.cdef("double NonOverlappingTemplateMatchings(unsigned char epsilon[], int m, int n);")
 
 ffi.set_source(
     "_sts",
@@ -25,7 +26,8 @@ ffi.set_source(
              "src/matrix.c",
              "src/rank.c",
              "src/dfft.c",
-             "src/discreteFourierTransform.c"],
+             "src/discreteFourierTransform.c",
+             "src/nonOverlappingTemplateMatchings.c"],
     include_dirs=["include/"],
 )
 

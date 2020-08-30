@@ -29,4 +29,7 @@ def test_binary_matrix_rank():
 def test_spectral():
     assert isinstance(DiscreteFourierTransform(bitseq(10), 10), float)
 
+def test_non_overlapping_template_matching():
+    assert isinstance(NonOverlappingTemplateMatchings(bitseq(20), 2, 20), float)
+
 

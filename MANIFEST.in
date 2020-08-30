@@ -1,3 +1,4 @@
 include ext_build.py
 include include/*.h
 include src/*.c
+include templates/*
