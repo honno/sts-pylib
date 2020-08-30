@@ -16,3 +16,6 @@ def test_cusum_forward():
 
 def test_cusum_backward():
     assert CumulativeSumsBackward(bitseq(10), 10)
+
+def test_runs():
+    assert Runs(bitseq(10), 10)

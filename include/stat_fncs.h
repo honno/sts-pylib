@@ -7,7 +7,7 @@ double Frequency(unsigned char epsilon[], int n);
 double BlockFrequency(unsigned char epsilon[], int M, int n);
 double CumulativeSumsForward(unsigned char epsilon[], int n);
 double CumulativeSumsBackward(unsigned char epsilon[], int n);
-void	Runs(int n);
+double Runs(unsigned char epsilon[], int n);
 void	LongestRunOfOnes(int n);
 void	Rank(int n);
 void	DiscreteFourierTransform(int n);
