@@ -17,6 +17,7 @@ ffi.cdef("double ApproximateEntropy(unsigned char epsilon[], int m, int n);")
 ffi.cdef("double RandomExcursions(unsigned char epsilon[], int n);")
 ffi.cdef("double RandomExcursionsVariant(unsigned char epsilon[], int n);")
 ffi.cdef("double LinearComplexity(unsigned char epsilon[], int M, int n);")
+ffi.cdef("double Serial(unsigned char epsilon[], int m, int n);")
 
 ffi.set_source(
     "_sts",
@@ -40,7 +41,8 @@ ffi.set_source(
         "src/approximateEntropy.c",
         "src/randomExcursions.c",
         "src/randomExcursionsVariant.c",
-        "src/linearComplexity.c"
+        "src/linearComplexity.c",
+        "src/serial.c",
     ],
     include_dirs=["include/"],
 )

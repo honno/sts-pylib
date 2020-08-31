@@ -50,5 +50,9 @@ def test_random_excursions_variant():
 def test_linear_complexity():
     assert isinstance(LinearComplexity(bitseq(387840), 8, 387840), float)
 
+def test_serial():
+    assert isinstance(Serial(bitseq(387840), 8, 387840), float)
+
+
 
 
