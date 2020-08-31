@@ -1,6 +1,6 @@
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-     S T A T I S T I C A L  T E S T  F U N C T I O N  P R O T O T Y P E S 
+     S T A T I S T I C A L  T E S T  F U N C T I O N  P R O T O T Y P E S
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 double Frequency(unsigned char epsilon[], int n);
