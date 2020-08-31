@@ -47,5 +47,8 @@ def test_random_excursions():
 def test_random_excursions_variant():
     assert isinstance(RandomExcursionsVariant(bitseq(387840), 387840), float)
 
+def test_linear_complexity():
+    assert isinstance(LinearComplexity(bitseq(387840), 8, 387840), float)
+
 
 

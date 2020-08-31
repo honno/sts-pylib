@@ -3,10 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/externs.h"
-#include "../include/cephes.h"  
+#include "../include/cephes.h"
 
-void
-LinearComplexity(int M, int n)
+double LinearComplexity(unsigned char epsilon[], int M, int n)
 {
 	int       i, ii, j, d, N, L, m, N_, parity, sign, K = 6;
 	double    p_value, T_, mean, nu[7], chi2;
@@ -31,17 +30,17 @@ LinearComplexity(int M, int n)
 	}
 
 
-	fprintf(stats[TEST_LINEARCOMPLEXITY], "-----------------------------------------------------\n");
-	fprintf(stats[TEST_LINEARCOMPLEXITY], "\tL I N E A R  C O M P L E X I T Y\n");
-	fprintf(stats[TEST_LINEARCOMPLEXITY], "-----------------------------------------------------\n");
-	fprintf(stats[TEST_LINEARCOMPLEXITY], "\tM (substring length)     = %d\n", M);
-	fprintf(stats[TEST_LINEARCOMPLEXITY], "\tN (number of substrings) = %d\n", N);
-	fprintf(stats[TEST_LINEARCOMPLEXITY], "-----------------------------------------------------\n");
-	fprintf(stats[TEST_LINEARCOMPLEXITY], "        F R E Q U E N C Y                            \n");
-	fprintf(stats[TEST_LINEARCOMPLEXITY], "-----------------------------------------------------\n");
-	fprintf(stats[TEST_LINEARCOMPLEXITY], "  C0   C1   C2   C3   C4   C5   C6    CHI2    P-value\n");
-	fprintf(stats[TEST_LINEARCOMPLEXITY], "-----------------------------------------------------\n");
-	fprintf(stats[TEST_LINEARCOMPLEXITY], "\tNote: %d bits were discarded!\n", n%M);
+	printf("-----------------------------------------------------\n");
+	printf("\tL I N E A R  C O M P L E X I T Y\n");
+	printf("-----------------------------------------------------\n");
+	printf("M (substring length)     = %d\n", M);
+	printf("N (number of substrings) = %d\n", N);
+	printf("-----------------------------------------------------\n");
+	printf("        F R E Q U E N C Y                            \n");
+	printf("-----------------------------------------------------\n");
+	printf("  C0   C1   C2   C3   C4   C5   C6    CHI2    P-value\n");
+	printf("-----------------------------------------------------\n");
+	printf("Note: %d bits were discarded!\n", n%M);
 
 	for ( i=0; i<K+1; i++ )
 		nu[i] = 0.00;
@@ -112,16 +111,17 @@ LinearComplexity(int M, int n)
 	}
 	chi2 = 0.00;
 	for ( i=0; i<K+1; i++ ) 
-		fprintf(stats[TEST_LINEARCOMPLEXITY], "%4d ", (int)nu[i]);
+		printf("%4d ", (int)nu[i]);
 	for ( i=0; i<K+1; i++ )
 		chi2 += pow(nu[i]-N*pi[i], 2) / (N*pi[i]);
 	p_value = cephes_igamc(K/2.0, chi2/2.0);
 
-	fprintf(stats[TEST_LINEARCOMPLEXITY], "%9.6f%9.6f\n", chi2, p_value); fflush(stats[TEST_LINEARCOMPLEXITY]);
-	fprintf(results[TEST_LINEARCOMPLEXITY], "%f\n", p_value); fflush(results[TEST_LINEARCOMPLEXITY]);
+	printf("%9.6f%9.6f\n", chi2, p_value);
 
 	free(B_);
 	free(P);
 	free(C);
 	free(T);
+
+  return p_value;
 }

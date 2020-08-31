@@ -17,5 +17,5 @@ double Universal(unsigned char epsilon[], int n);
 double ApproximateEntropy(unsigned char epsilon[], int m, int n);
 double RandomExcursions(unsigned char epsilon[], int n);
 double RandomExcursionsVariant(unsigned char epsilon[], int n);
-void	LinearComplexity(int M, int n);
+double LinearComplexity(unsigned char epsilon[], int M, int n);
 void	Serial(int m, int n);
