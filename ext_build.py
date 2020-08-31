@@ -15,6 +15,7 @@ ffi.cdef("double OverlappingTemplateMatchings(unsigned char epsilon[], int m, in
 ffi.cdef("double Universal(unsigned char epsilon[], int n);")
 ffi.cdef("double ApproximateEntropy(unsigned char epsilon[], int m, int n);")
 ffi.cdef("double RandomExcursions(unsigned char epsilon[], int n);")
+ffi.cdef("double RandomExcursionsVariant(unsigned char epsilon[], int n);")
 
 ffi.set_source(
     "_sts",
@@ -36,7 +37,8 @@ ffi.set_source(
         "src/overlappingTemplateMatchings.c",
         "src/universal.c",
         "src/approximateEntropy.c",
-        "src/randomExcursions.c"
+        "src/randomExcursions.c",
+        "src/randomExcursionsVariant.c"
     ],
     include_dirs=["include/"],
 )

@@ -44,5 +44,8 @@ def test_approximate_entropy():
 def test_random_excursions():
     assert isinstance(RandomExcursions(bitseq(387840), 387840), float)
 
+def test_random_excursions_variant():
+    assert isinstance(RandomExcursionsVariant(bitseq(387840), 387840), float)
+
 
 
