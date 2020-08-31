@@ -15,7 +15,7 @@ double NonOverlappingTemplateMatchings(unsigned char epsilon[], int m, int n);
 double OverlappingTemplateMatchings(unsigned char epsilon[], int m, int n);
 double Universal(unsigned char epsilon[], int n);
 double ApproximateEntropy(unsigned char epsilon[], int m, int n);
-void	RandomExcursions(int n);
+double RandomExcursions(unsigned char epsilon[], int n);
 void	RandomExcursionsVariant(int n);
 void	LinearComplexity(int M, int n);
 void	Serial(int m, int n);
