@@ -35,5 +35,8 @@ def test_non_overlapping_template_matching():
 def test_overlapping_template_matching():
     assert isinstance(OverlappingTemplateMatchings(bitseq(1032), 8, 1032), float)
 
+def test_universal():
+    assert isinstance(Universal(bitseq(387840), 387840), float)
+
 
 

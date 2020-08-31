@@ -10,8 +10,7 @@
                          U N I V E R S A L  T E S T
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-void
-Universal(int n)
+double Universal(unsigned char epsilon[], int n)
 {
 	int		i, j, p, L, Q, K;
 	double	arg, sqrt2, sigma, phi, sum, p_value, c;
@@ -45,11 +44,11 @@ Universal(int n)
 	p = (int)pow(2, L);
 	if ( (L < 6) || (L > 16) || ((double)Q < 10*pow(2, L)) ||
 		 ((T = (long *)calloc(p, sizeof(long))) == NULL) ) {
-		fprintf(stats[TEST_UNIVERSAL], "\t\tUNIVERSAL STATISTICAL TEST\n");
-		fprintf(stats[TEST_UNIVERSAL], "\t\t---------------------------------------------\n");
-		fprintf(stats[TEST_UNIVERSAL], "\t\tERROR:  L IS OUT OF RANGE.\n");
-		fprintf(stats[TEST_UNIVERSAL], "\t\t-OR- :  Q IS LESS THAN %f.\n", 10*pow(2, L));
-		fprintf(stats[TEST_UNIVERSAL], "\t\t-OR- :  Unable to allocate T.\n");
+		printf("UNIVERSAL STATISTICAL TEST\n");
+		printf("---------------------------------------------\n");
+		printf("ERROR:  L IS OUT OF RANGE.\n");
+		printf("-OR- :  Q IS LESS THAN %f.\n", 10*pow(2, L));
+		printf("-OR- :  Unable to allocate T.\n");
 		return;
 	}
 	
@@ -75,28 +74,29 @@ Universal(int n)
 	}
 	phi = (double)(sum/(double)K);
 
-	fprintf(stats[TEST_UNIVERSAL], "\t\tUNIVERSAL STATISTICAL TEST\n");
-	fprintf(stats[TEST_UNIVERSAL], "\t\t--------------------------------------------\n");
-	fprintf(stats[TEST_UNIVERSAL], "\t\tCOMPUTATIONAL INFORMATION:\n");
-	fprintf(stats[TEST_UNIVERSAL], "\t\t--------------------------------------------\n");
-	fprintf(stats[TEST_UNIVERSAL], "\t\t(a) L         = %d\n", L);
-	fprintf(stats[TEST_UNIVERSAL], "\t\t(b) Q         = %d\n", Q);
-	fprintf(stats[TEST_UNIVERSAL], "\t\t(c) K         = %d\n", K);
-	fprintf(stats[TEST_UNIVERSAL], "\t\t(d) sum       = %f\n", sum);
-	fprintf(stats[TEST_UNIVERSAL], "\t\t(e) sigma     = %f\n", sigma);
-	fprintf(stats[TEST_UNIVERSAL], "\t\t(f) variance  = %f\n", variance[L]);
-	fprintf(stats[TEST_UNIVERSAL], "\t\t(g) exp_value = %f\n", expected_value[L]);
-	fprintf(stats[TEST_UNIVERSAL], "\t\t(h) phi       = %f\n", phi);
-	fprintf(stats[TEST_UNIVERSAL], "\t\t(i) WARNING:  %d bits were discarded.\n", n-(Q+K)*L);
-	fprintf(stats[TEST_UNIVERSAL], "\t\t-----------------------------------------\n");
+	printf("UNIVERSAL STATISTICAL TEST\n");
+	printf("--------------------------------------------\n");
+	printf("COMPUTATIONAL INFORMATION:\n");
+	printf("--------------------------------------------\n");
+	printf("(a) L         = %d\n", L);
+	printf("(b) Q         = %d\n", Q);
+	printf("(c) K         = %d\n", K);
+	printf("(d) sum       = %f\n", sum);
+	printf("(e) sigma     = %f\n", sigma);
+	printf("(f) variance  = %f\n", variance[L]);
+	printf("(g) exp_value = %f\n", expected_value[L]);
+	printf("(h) phi       = %f\n", phi);
+	printf("(i) WARNING:  %d bits were discarded.\n", n-(Q+K)*L);
+	printf("-----------------------------------------\n");
 
 	arg = fabs(phi-expected_value[L])/(sqrt2 * sigma);
 	p_value = erfc(arg);
 	if ( isNegative(p_value) || isGreaterThanOne(p_value) )
-		fprintf(stats[TEST_UNIVERSAL], "\t\tWARNING:  P_VALUE IS OUT OF RANGE\n");
+		printf("WARNING:  P_VALUE IS OUT OF RANGE\n");
 
-	fprintf(stats[TEST_UNIVERSAL], "%s\t\tp_value = %f\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value); fflush(stats[TEST_UNIVERSAL]);
-	fprintf(results[TEST_UNIVERSAL], "%f\n", p_value); fflush(results[TEST_UNIVERSAL]);
+	printf("%p_value = %f\n", p_value);
 	
 	free(T);
+
+  return p_value;
 }
