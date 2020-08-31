@@ -1,0 +1,5 @@
+Reference
+=========
+
+.. automodule:: sts
+   :members:

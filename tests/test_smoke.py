@@ -6,53 +6,50 @@ def bitseq(n):
     return [getrandbits(1) for _ in range(n)]
 
 def test_monobit():
-    assert isinstance(Frequency(bitseq(10), 10), float)
+    assert isinstance(frequency(bitseq(10)), float)
 
 def test_frequency_within_block():
-    assert isinstance(BlockFrequency(bitseq(100), 10, 100), float)
-
-def test_cusum_forward():
-    assert isinstance(CumulativeSumsForward(bitseq(10), 10), float)
-
-def test_cusum_backward():
-    assert isinstance(CumulativeSumsBackward(bitseq(10), 10), float)
+    assert isinstance(block_frequency(bitseq(100), 10), float)
 
 def test_runs():
-    assert isinstance(Runs(bitseq(10), 10), float)
+    assert isinstance(runs(bitseq(10)), float)
+
+def test_cusum_forward():
+    assert isinstance(cumulative_sums(bitseq(10)), float)
+
+def test_cusum_backward():
+    assert isinstance(cumulative_sums(bitseq(10), reverse=True), float)
 
 def test_longest_runs():
-    assert isinstance(LongestRunOfOnes(bitseq(160), 160), float)
+    assert isinstance(longest_run_of_ones(bitseq(160)), float)
 
 def test_binary_matrix_rank():
-    assert isinstance(Rank(bitseq(1024), 1024), float)
+    assert isinstance(rank(bitseq(1024)), float)
 
 def test_spectral():
-    assert isinstance(DiscreteFourierTransform(bitseq(10), 10), float)
+    assert isinstance(discrete_fourier_transform(bitseq(10)), float)
 
 def test_non_overlapping_template_matching():
-    assert isinstance(NonOverlappingTemplateMatchings(bitseq(20), 2, 20), float)
+    assert isinstance(non_overlapping_template_matchings(bitseq(20), 2), float)
 
 def test_overlapping_template_matching():
-    assert isinstance(OverlappingTemplateMatchings(bitseq(1032), 8, 1032), float)
+    assert isinstance(overlapping_template_matchings(bitseq(1032), 8), float)
 
 def test_universal():
-    assert isinstance(Universal(bitseq(387840), 387840), float)
+    assert isinstance(universal(bitseq(387840)), float)
 
 def test_approximate_entropy():
-    assert isinstance(ApproximateEntropy(bitseq(10), 3, 10), float)
+    assert isinstance(approximate_entropy(bitseq(10), 3), float)
 
 def test_random_excursions():
-    assert isinstance(RandomExcursions(bitseq(387840), 387840), float)
+    assert isinstance(random_excursions(bitseq(387840)), float)
 
 def test_random_excursions_variant():
-    assert isinstance(RandomExcursionsVariant(bitseq(387840), 387840), float)
+    assert isinstance(random_excursions(bitseq(387840), variant=True), float)
 
 def test_linear_complexity():
-    assert isinstance(LinearComplexity(bitseq(387840), 8, 387840), float)
+    assert isinstance(linear_complexity(bitseq(387840), 8), float)
 
 def test_serial():
-    assert isinstance(Serial(bitseq(387840), 8, 387840), float)
-
-
-
+    assert isinstance(serial(bitseq(387840), 8), float)
 
