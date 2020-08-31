@@ -13,6 +13,7 @@ ffi.cdef("double DiscreteFourierTransform(unsigned char epsilon[], int n);")
 ffi.cdef("double NonOverlappingTemplateMatchings(unsigned char epsilon[], int m, int n);")
 ffi.cdef("double OverlappingTemplateMatchings(unsigned char epsilon[], int m, int n);")
 ffi.cdef("double Universal(unsigned char epsilon[], int n);")
+ffi.cdef("double ApproximateEntropy(unsigned char epsilon[], int m, int n);")
 
 ffi.set_source(
     "_sts",
@@ -32,7 +33,8 @@ ffi.set_source(
         "src/discreteFourierTransform.c",
         "src/nonOverlappingTemplateMatchings.c",
         "src/overlappingTemplateMatchings.c",
-        "src/universal.c"
+        "src/universal.c",
+        "src/approximateEntropy.c"
     ],
     include_dirs=["include/"],
 )

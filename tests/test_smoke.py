@@ -38,5 +38,8 @@ def test_overlapping_template_matching():
 def test_universal():
     assert isinstance(Universal(bitseq(387840), 387840), float)
 
+def test_approximate_entropy():
+    assert isinstance(ApproximateEntropy(bitseq(10), 3, 10), float)
+
 
 
