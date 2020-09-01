@@ -41,7 +41,7 @@ as an array of `0` and `1` integers.
 ## Contributors
 
 The [original sts C program](https://csrc.nist.gov/Projects/Random-Bit-Generation/Documentation-and-Software),
-alongside it's corresponding SP800-22 paper,
+alongside its corresponding [SP800-22 paper](https://csrc.nist.gov/publications/detail/sp/800-22/rev-1a/final),
 were authored by the following at [NIST](https://www.nist.gov/):
 
 * Andrew Rukhin
