@@ -1,34 +1,70 @@
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/kravietz/nist-sts.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/kravietz/nist-sts/alerts/)
-[![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/kravietz/nist-sts.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/kravietz/nist-sts/context:cpp)
+# sts-pylib
 
-# NIST Statistical Test Suite
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Honno/sts-pylib/Test%20package)
+![Read the Docs](https://img.shields.io/readthedocs/sts-pylib)
+![License](https://img.shields.io/badge/license-public%20domain-informational)
+![PyPI](https://img.shields.io/pypi/v/sts-pylib)
+![Python Version](https://img.shields.io/badge/python-3.6%2B-informational)
 
-This is a slightly updated version of [NIST Statistical Test Suite (STS)](http://csrc.nist.gov/groups/ST/toolkit/rng/documentation_software.html) tool for randomness testing. Main reason for this fork is that the original source code provided by NIST doesn't compile cleanly on Windows using MSVC. Main reason is that MSVC doesn't provide erf() and erfc() functions in standard math library. I've added implementation of these functions and created a project file. You should be now able to compile STS using standard Microsoft Visual C/C++ suite.
+A functional Python interface to the NIST Statistical Test Suite.
 
-## Building
-This version should compile cleanly under MSVC 2008. I haven't tested it under other versions and MSVC Express, but it's ANSI C so it should work.
+## Getting started
 
-The solution is configured to compile using extended instruction set (SSE2) and optimize for speed.
+You can install `sts-pylib` via `pip`:
 
-After build is completed you will get a single _assess.exe_ binary which is the test suite.
+```console
+$ pip install sts-pylib
+```
 
-## Usage
-You probably still want to [download](http://csrc.nist.gov/groups/ST/toolkit/rng/documentation_software.html) the original NIST ZIP distribution and use their test files. Reason why I'm not including them here is that the archive is over 40 MB big and most of that is the test data.
+This will install a package `sts` into your system,
+which contains NIST's statistical tests for randomness.
+A complete reference is available in the [docs](https://sts-pylib.readthedocs.io/en/latest/).
 
-After unpacking the ZIP place _assess.exe_ in the top directory. The program expects to have the subdirectories _experiments, templates_ etc in the same directory. 
+```pycon
+>>> import sts
+>>> p_value = sts.frequency([1, 0, 1, 1, 0, 1, 0, 1, 0, 1])
+	      FREQUENCY TEST
+---------------------------------------------
+COMPUTATIONAL INFORMATION:
+(a) The nth partial sum = 2
+(b) S_n/n               = 0.200000
+---------------------------------------------
+p_value = 0.527089
+>>> print(p_value)
+0.5270892568655381
+```
 
-STS has somewhat old school terminal interface. Simple tutorial can be found in section 5-1 of [NIST SP800-22](http://csrc.nist.gov/groups/ST/toolkit/rng/documents/SP800-22rev1a.pdf).
+Note that all the tests take the input sequence `epsilon`
+(a sample of RNG output)
+as an array of `0` and `1` integers.
 
-Remember that testing results are written to _experiments\AlgorithmTesting\finalAnalysisReport.txt_ if you load tested data from a file. STS has a number of built-in generators, in which case the report will be written to a corresponding subdirectory of _experiments_.
+## Contributors
 
-## License
+The [original sts C program](https://csrc.nist.gov/Projects/Random-Bit-Generation/Documentation-and-Software),
+alongside it's corresponding SP800-22 paper,
+were authored by the following at [NIST](https://www.nist.gov/):
 
-The [original license](http://csrc.nist.gov/groups/ST/toolkit/rng/documentation_software.html):
+* Andrew Rukhin
+* Juan Soto
+* James Nechvatal
+* Miles Smid
+* Elaine Barker
+* Stefan Leigh
+* Mark Levenson
+* Mark Vangel
+* David Banks,
+* Alan Heckert
+* James Dray
+* San Vo
+* Lawrence E Bassham III
 
-This software was developed at the National Institute of Standards and Technology by employees of the Federal Government in the course of their official duties. Pursuant to title 17 Section 105 of the United States Code this software is not subject to copyright protection and is in the public domain. The NIST Statistical Test Suite is an experimental system. NIST assumes no responsibility whatsoever for its use by other parties, and makes no guarantees, expressed or implied, about its quality, reliability, or any other characteristic. We would appreciate acknowledgment if the software is used.
+Additional work to improve Windows compatibility was done by
+Paweł Krawczyk ([@kravietz](https://github.com/kravietz)),
+with a bug fix by [@ZZMarquis](https://github.com/ZZMarquis).
 
-
-
-
-
-
+I ([@Honno](https://github.com/Honno)) am responsible for
+converting sts into a functional interface,
+and providing a Python wrapper on-top of it.
+You can check out my own randomness testing suite [coinflip](https://github.com/Honno/coinflip/),
+where I am creating a robust and user-friendly
+version of NIST's sts in Python.
