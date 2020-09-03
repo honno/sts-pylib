@@ -145,6 +145,9 @@ def non_overlapping_template_matchings(epsilon: List[int], m: int) -> float:
     :param m: The length in bits of each template. The template is the target string.
     :returns: p-value
     """
+    raise NotImplementedError("Doesn't work due to sts' use of external files.\n"
+                              "Specifically, src/nonOverlappingTemplateMatchings.c makes use of the templates/ directory.\n"
+                              "To be fixed before a 1.0 release.")
     n = len(epsilon)
     return lib.NonOverlappingTemplateMatchings(epsilon, m, n)
 
