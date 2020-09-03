@@ -45,7 +45,6 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-#
 html_theme = 'alabaster'
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -53,6 +52,10 @@ html_theme = 'alabaster'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+html_theme_options = {
+    'nosidebar': True,
+}
+collapse_navigation = True
 
 # -- Custom
 napoleon_use_ivar = True
