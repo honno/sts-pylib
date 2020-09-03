@@ -50,7 +50,7 @@ def test_random_excursions():
     assert isinstance(random_excursions(bitseq(387840)), float)
 
 def test_random_excursions_variant():
-    assert isinstance(random_excursions(bitseq(387840), variant=True), float)
+    assert isinstance(random_excursions_variant(bitseq(387840)), float)
 
 def test_linear_complexity():
     assert isinstance(linear_complexity(bitseq(387840), 8), float)
@@ -79,6 +79,7 @@ tests = {
     approximate_entropy: (RNG_output, 14),
     cumulative_sums: (RNG_output,),
     random_excursions: (RNG_output,),
+    random_excursions_variant: (RNG_output,),
 }
 
 @pytest.mark.parametrize(["randtest", "args"], tests.items())
