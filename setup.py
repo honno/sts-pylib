@@ -10,7 +10,6 @@ setup(
     author_email="quitesimplymatt@gmail.com",
     url="https://github.com/Honno/sts-pylib",
     include_package_data=True,
-    packages = ["."],
     project_urls={
         "Documentation": "https://sts-pylib.readthedocs.io/",
         "Issue Tracker": "https://github.com/Honno/sts-pylib/issues",
