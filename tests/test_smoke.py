@@ -1,6 +1,11 @@
 from random import getrandbits
 
+import pytest
+
 from sts import *
+
+# ------------------------------------------------------------------------------
+# Small inputs
 
 def bitseq(n):
     return [getrandbits(1) for _ in range(n)]
@@ -53,3 +58,30 @@ def test_linear_complexity():
 def test_serial():
     assert isinstance(serial(bitseq(387840), 8), float)
 
+# ------------------------------------------------------------------------------
+# In practice
+
+RNG_output = [getrandbits(1) for _ in range(1000000)]
+
+# Note that the arguments used here have been based on SP800-22's recommendations
+tests = {
+    frequency: (RNG_output,),
+    block_frequency: (RNG_output, 10000),
+    runs: (RNG_output,),
+    longest_run_of_ones: (RNG_output,),
+    rank: (RNG_output,),
+    discrete_fourier_transform: (RNG_output,),
+    non_overlapping_template_matchings: (RNG_output[:8000], 10), # N is hardcoded to 8
+    overlapping_template_matchings: (RNG_output, 10),
+    universal: (RNG_output,),
+    linear_complexity: (RNG_output, 1000),
+    serial: (RNG_output, 17),
+    approximate_entropy: (RNG_output, 14),
+    cumulative_sums: (RNG_output,),
+    random_excursions: (RNG_output,),
+}
+
+@pytest.mark.parametrize(["randtest", "args"], tests.items())
+def test_randtests(randtest, args):
+    p_value = randtest(*args)
+    assert isinstance(p_value, float)
