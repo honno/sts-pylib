@@ -8,7 +8,7 @@
 
 A functional Python interface to the NIST Statistical Test Suite.
 
-## Getting started
+## Quickstart
 
 You can install `sts-pylib` via `pip`:
 
