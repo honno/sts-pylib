@@ -38,6 +38,9 @@ Note that all the tests take the input sequence `epsilon`
 (a sample of RNG output)
 as an array of `0` and `1` integers.
 
+A more thorough demonstration of `sts-pylib` is available on
+[Kaggle](https://www.kaggle.com/justhonno/overly-simplistic-randomness-testing-demo).
+
 ## Contributors
 
 The [original sts C program](https://csrc.nist.gov/Projects/Random-Bit-Generation/Documentation-and-Software),
