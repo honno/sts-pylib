@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="sts-pylib",
-    version="0.0.1",
+    version="0.0.2",
     description="NIST's Statistical Test Suite bindings",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
