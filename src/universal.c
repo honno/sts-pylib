@@ -97,7 +97,7 @@ double Universal(unsigned char epsilon[], int n) {
   if (isNegative(p_value) || isGreaterThanOne(p_value))
     printf("WARNING:  P_VALUE IS OUT OF RANGE\n");
 
-  printf("%p_value = %f\n", p_value);
+  printf("p_value = %f\n", p_value);
 
   free(T);
 
