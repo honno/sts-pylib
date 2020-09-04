@@ -58,6 +58,4 @@ html_theme_options = {
 collapse_navigation = True
 
 # -- Custom
-napoleon_use_ivar = True
-napoleon_use_rtype = False
-napoleon_use_param = False
+autodoc_member_order = 'bysource'
