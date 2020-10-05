@@ -10,7 +10,8 @@
                      R A N D O M  E X C U R S I O N S  T E S T
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-double RandomExcursions(unsigned char epsilon[], int n) {
+double * RandomExcursions(unsigned char epsilon[], int n) {
+  static double p_values[8];
   int b, i, j, k, J, x;
   int cycleStart, cycleStop, *cycle = NULL, *S_k = NULL;
   int stateX[8] = {-4, -3, -2, -1, 1, 2, 3, 4};
@@ -99,6 +100,7 @@ double RandomExcursions(unsigned char epsilon[], int n) {
       }
     }
 
+
     for (i = 0; i < 8; i++) {
       x = stateX[i];
       sum = 0.;
@@ -106,6 +108,7 @@ double RandomExcursions(unsigned char epsilon[], int n) {
         sum += pow(nu[k][i] - J * pi[(int)fabs(x)][k], 2) /
                (J * pi[(int)fabs(x)][k]);
       p_value = cephes_igamc(2.5, sum / 2.0);
+      p_values[i] = p_value;
 
       if (isNegative(p_value) || isGreaterThanOne(p_value))
         printf("WARNING:  P_VALUE IS OUT OF RANGE.\n");
@@ -116,5 +119,5 @@ double RandomExcursions(unsigned char epsilon[], int n) {
   free(S_k);
   free(cycle);
 
-  return p_value;
+  return p_values;
 }

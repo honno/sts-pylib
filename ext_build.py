@@ -14,10 +14,10 @@ ffi.cdef("double NonOverlappingTemplateMatchings(unsigned char epsilon[], int m,
 ffi.cdef("double OverlappingTemplateMatchings(unsigned char epsilon[], int m, int n);")
 ffi.cdef("double Universal(unsigned char epsilon[], int n);")
 ffi.cdef("double ApproximateEntropy(unsigned char epsilon[], int m, int n);")
-ffi.cdef("double RandomExcursions(unsigned char epsilon[], int n);")
-ffi.cdef("double RandomExcursionsVariant(unsigned char epsilon[], int n);")
+ffi.cdef("double * RandomExcursions(unsigned char epsilon[], int n);")
+ffi.cdef("double * RandomExcursionsVariant(unsigned char epsilon[], int n);")
 ffi.cdef("double LinearComplexity(unsigned char epsilon[], int M, int n);")
-ffi.cdef("double Serial(unsigned char epsilon[], int m, int n);")
+ffi.cdef("double * Serial(unsigned char epsilon[], int m, int n);")
 
 ffi.set_source(
     "_sts",

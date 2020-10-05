@@ -1,4 +1,5 @@
 from random import getrandbits
+from typing import List
 
 import pytest
 
@@ -47,16 +48,16 @@ def test_approximate_entropy():
     assert isinstance(approximate_entropy(bitseq(10), 3), float)
 
 def test_random_excursions():
-    assert isinstance(random_excursions(bitseq(387840)), float)
+    assert isinstance(random_excursions(bitseq(387840)), List)
 
 def test_random_excursions_variant():
-    assert isinstance(random_excursions_variant(bitseq(387840)), float)
+    assert isinstance(random_excursions_variant(bitseq(387840)), List)
 
 def test_linear_complexity():
     assert isinstance(linear_complexity(bitseq(387840), 8), float)
 
 def test_serial():
-    assert isinstance(serial(bitseq(387840), 8), float)
+    assert isinstance(serial(bitseq(387840), 8), List)
 
 # ------------------------------------------------------------------------------
 # In practice
@@ -84,5 +85,5 @@ tests = {
 
 @pytest.mark.parametrize(["randtest", "args"], tests.items())
 def test_randtests(randtest, args):
-    p_value = randtest(*args)
-    assert isinstance(p_value, float)
+    result = randtest(*args)
+    assert isinstance(result, float) or isinstance(result, List)

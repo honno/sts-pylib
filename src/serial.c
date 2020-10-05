@@ -8,7 +8,8 @@
 
 double psi2(unsigned char epsilon[], int m, int n);
 
-double Serial(unsigned char epsilon[], int m, int n) {
+double * Serial(unsigned char epsilon[], int m, int n) {
+  static double p_values[2];
   double p_value1, p_value2, psim0, psim1, psim2, del1, del2;
 
   psim0 = psi2(epsilon, m, n);
@@ -35,11 +36,9 @@ double Serial(unsigned char epsilon[], int m, int n) {
   printf("p_value1 = %f\n", p_value1);
   printf("p_value2 = %f\n", p_value2);
 
-  if (p_value1 < p_value2) {
-    return p_value1;
-  } else {
-    return p_value2;
-  }
+  p_values[0] = p_value1;
+  p_values[1] = p_value2;
+  return p_values;
 }
 
 double psi2(unsigned char epsilon[], int m, int n) {

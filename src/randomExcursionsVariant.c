@@ -10,7 +10,8 @@
             R A N D O M  E X C U R S I O N S  V A R I A N T  T E S T
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-double RandomExcursionsVariant(unsigned char epsilon[], int n) {
+double * RandomExcursionsVariant(unsigned char epsilon[], int n) {
+  static double p_values[18];
   int i, p, J, x, constraint, count, *S_k;
   int stateX[18] = {-9, -8, -7, -6, -5, -4, -3, -2, -1,
                     1,  2,  3,  4,  5,  6,  7,  8,  9};
@@ -49,6 +50,7 @@ double RandomExcursionsVariant(unsigned char epsilon[], int n) {
       for (i = 0; i < n; i++)
         if (S_k[i] == x) count++;
       p_value = erfc(fabs(count - J) / (sqrt(2.0 * J * (4.0 * fabs(x) - 2))));
+      p_values[p] = p_value;
 
       if (isNegative(p_value) || isGreaterThanOne(p_value))
         printf("(b) WARNING: P_VALUE IS OUT OF RANGE.\n");
@@ -58,5 +60,5 @@ double RandomExcursionsVariant(unsigned char epsilon[], int n) {
   }
   free(S_k);
 
-  return p_value;
+  return p_values;
 }
