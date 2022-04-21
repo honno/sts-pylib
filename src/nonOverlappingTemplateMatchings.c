@@ -11,8 +11,8 @@
           N O N O V E R L A P P I N G  T E M P L A T E  T E S T
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-double NonOverlappingTemplateMatchings(unsigned char epsilon[], int m, int n) {
-  int numOfTemplates[100] = {
+double * NonOverlappingTemplateMatchings(unsigned char epsilon[], int m, int n) {
+  int numOfTemplates[22] = {
       0,   0,    2,    4,    6,    12,    20,    40,    74,     148,    284,
       568, 1116, 2232, 4424, 8848, 17622, 35244, 70340, 140680, 281076, 562152};
   /*----------------------------------------------------------------------------
@@ -21,12 +21,16 @@ double NonOverlappingTemplateMatchings(unsigned char epsilon[], int m, int n) {
   number of nonperiodic templates for that file be stored in the m-th
   position in the numOfTemplates variable.
   ----------------------------------------------------------------------------*/
+  //static double p_values[numOfTemplates_const[m]];
+  static double *p_values;
   unsigned int bit, W_obs, nu[6], *Wj = NULL;
   FILE *fp;
   double sum, chi2, p_value, lambda, pi[6], varWj;
   int i, j, jj, k, match, SKIP, M, N, K = 5;
   char directory[100];
   BitSequence *sequence = NULL;
+
+  p_values = (double *) calloc(numOfTemplates[m], sizeof(double));
 
   N = 8;
   M = n / N;
@@ -125,6 +129,7 @@ double NonOverlappingTemplateMatchings(unsigned char epsilon[], int m, int n) {
         chi2 += pow(((double)Wj[i] - lambda) / pow(varWj, 0.5), 2);
       }
       p_value = cephes_igamc(N / 2.0, chi2 / 2.0);
+      p_values[jj] = p_value;
 
       if (isNegative(p_value) || isGreaterThanOne(p_value))
         printf("WARNING:  P_VALUE IS OUT OF RANGE.\n");
@@ -140,5 +145,5 @@ double NonOverlappingTemplateMatchings(unsigned char epsilon[], int m, int n) {
   free(Wj);
   fclose(fp);
 
-  return p_value;
+  return p_values;
 }
