@@ -11,7 +11,7 @@ double Runs(unsigned char epsilon[], int n);
 double LongestRunOfOnes(unsigned char epsilon[], int n);
 double Rank(unsigned char epsilon[], int n);
 double DiscreteFourierTransform(unsigned char epsilon[], int n);
-double NonOverlappingTemplateMatchings(unsigned char epsilon[], int m, int n);
+double * NonOverlappingTemplateMatchings(unsigned char epsilon[], int m, int n);
 double OverlappingTemplateMatchings(unsigned char epsilon[], int m, int n);
 double Universal(unsigned char epsilon[], int n);
 double ApproximateEntropy(unsigned char epsilon[], int m, int n);

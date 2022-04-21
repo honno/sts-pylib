@@ -149,7 +149,10 @@ def non_overlapping_template_matchings(epsilon: List[int], m: int) -> float:
                               "Specifically, src/nonOverlappingTemplateMatchings.c makes use of the templates/ directory.\n"
                               "To be fixed before a 1.0 release.")
     n = len(epsilon)
-    return lib.NonOverlappingTemplateMatchings(epsilon, m, n)
+    pointer = lib.NonOverlappingTemplateMatchings(epsilon, m, n)
+    numOfTemplates = [0,   0,    2,    4,    6,    12,    20,    40,    74,     148,    284,
+        568, 1116, 2232, 4424, 8848, 17622, 35244, 70340, 140680, 281076, 562152]
+    return [pointer[i] for i in range(numOfTemplates[m])]
 
 
 def overlapping_template_matchings(epsilon: List[int], m: int) -> float:
